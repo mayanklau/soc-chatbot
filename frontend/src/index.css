@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cyber-bg: #0a0e17;
+  --cyber-surface: #111827;
+  --cyber-border: #1e2a3a;
+  --cyber-accent: #00ff88;
+  --cyber-accent-dim: #00cc6a;
+  --cyber-warning: #ff6b35;
+  --cyber-critical: #ff3366;
+  --cyber-info: #00d4ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--cyber-bg);
+  color: #e5e7eb;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cyber-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cyber-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyber-accent-dim);
+}
+
+/* Scanline effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  opacity: 0.3;
+}
+
+/* Glowing borders */
+.glow-border {
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3),
+              inset 0 0 10px rgba(0, 255, 136, 0.1);
+}
+
+/* Terminal-style text */
+.terminal-text {
+  font-family: 'JetBrains Mono', monospace;
+  text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+}
+
+/* Message styling */
+.message-user {
+  background: linear-gradient(135deg, #1e3a5f 0%, #1e2a3a 100%);
+  border-left: 3px solid var(--cyber-info);
+}
+
+.message-assistant {
+  background: linear-gradient(135deg, #1a2e1a 0%, #111827 100%);
+  border-left: 3px solid var(--cyber-accent);
+}
+
+/* Agent badges */
+.agent-badge {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.agent-badge-query { background: rgba(0, 212, 255, 0.2); color: #00d4ff; }
+.agent-badge-triage { background: rgba(255, 107, 53, 0.2); color: #ff6b35; }
+.agent-badge-threat { background: rgba(255, 51, 102, 0.2); color: #ff3366; }
+.agent-badge-ir { background: rgba(0, 255, 136, 0.2); color: #00ff88; }
+
+/* Severity indicators */
+.severity-critical { color: #ff3366; }
+.severity-high { color: #ff6b35; }
+.severity-medium { color: #ffd93d; }
+.severity-low { color: #00ff88; }
+
+/* Typing indicator */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-dot {
+  animation: blink 1.4s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Grid background pattern */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(30, 42, 58, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 42, 58, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Markdown styling in messages */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--cyber-accent);
+}
+
+.markdown-content code {
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.85em;
+  color: var(--cyber-info);
+}
+
+.markdown-content pre {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  border: 1px solid var(--cyber-border);
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.markdown-content li {
+  margin: 0.25rem 0;
+}
+
+.markdown-content strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Pulse animation for active elements */
+.pulse-active {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Status indicators */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-online { background: var(--cyber-accent); box-shadow: 0 0 6px var(--cyber-accent); }
+.status-processing { background: var(--cyber-warning); animation: pulse 1s infinite; }
+.status-error { background: var(--cyber-critical); }
