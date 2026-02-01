@@ -182,7 +182,7 @@ class NormalizedDataLake:
                 },
                 "file": {
                     "name": f"{'malware_' if is_malicious else 'document_'}{random.randint(1,100)}.{'exe' if is_malicious else 'docx'}",
-                    "path": f"C:\\{'Temp' if is_malicious else 'Users\\Documents'}\\",
+                    "path": "C:\Temp\" if is_malicious else "C:\Users\Documents\",
                     "hash_sha256": random.choice(malicious_hashes) if is_malicious else f"{uuid.uuid4().hex}",
                     "size": random.randint(1024, 10485760)
                 },
